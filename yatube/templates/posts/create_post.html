@@ -1,0 +1,44 @@
+{% extends "users/base.html" %}
+{% block title %}
+  {% if is_edit %}
+    Редактировать пост
+  {% else %}
+    Новый пост
+  {% endif %} 
+{% endblock %}
+{% block header_title %}
+  {% if is_edit %}
+    Редактировать пост
+  {% else %}
+    Добавить пост
+  {% endif %} 
+{% endblock %}
+{% block form_content %}
+
+  {% include 'includes/form_errors.html' %}
+
+  <form method="post" enctype="multipart/form-data"
+    action="
+      {% if is_edit %}
+        {% url 'posts:post_edit' post_id %}
+      {% else %}
+        {% url 'posts:post_create' %}
+      {% endif %}
+    "
+  >
+    {% csrf_token %}
+
+    {% include 'includes/form_fields.html' %}
+
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-primary">
+        {% if is_edit %}
+          Сохранить
+        {% else %}
+          Добавить
+        {% endif %} 
+      </button>
+    </div>
+  </form>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "users/base.html" %}
+{% block title %}Зарегистрироваться{% endblock %}
+{% block header_title %}Зарегистрироваться{% endblock %}
+{% block form_content %}
+
+  {% include 'includes/form_errors.html' %}
+
+  <form method="post"
+    {% if action_url %}
+      action="{% url action_url %}"
+    {% endif %}
+  >
+    {% csrf_token %}
+
+    {% include 'includes/form_fields.html' %}
+
+    <div class="col-md-6 offset-md-4">
+      <button type="submit" class="btn btn-primary">
+        Зарегистрироваться
+      </button>
+    </div>
+  </form>
+
+{% endblock %}

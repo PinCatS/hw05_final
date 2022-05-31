@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block links %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="{% static 'css/tech.css' %}">
+  <script defer src="{% static 'js/tech.js' %}"></script>
+{% endblock %}
+{% block title %}
+  Технологии
+{% endblock %}
+{% block content %}
+  <div class="row">   
+    <h1 class="mb-4">Вот что я умею</h1>
+
+    <aside class="col-12 col-md-3 mb-4">
+      <ul id="nav-tech" class="list-group list-group-flush" style="color: red;">
+        <li data-idx="0" class="list-group-item">
+          <i class="fa-brands fa-python me-2" style="color:#3c79a9;"></i>Python
+        </li>
+        <li data-idx="1" class="list-group-item">
+          <img src={% static 'img/django.svg' %} height="16px" width="14px" alt="иконка django" class="me-2">Django
+        </li>
+        <li data-idx="2" class="list-group-item">
+          <i class="fa-brands fa-bootstrap me-2" style="color:#7953b2;"></i>Bootstrap
+        </li>
+        <li data-idx="3" class="list-group-item">
+          <i class="fa-brands fa-css3 me-2" style="color:#274ee4;"></i>CSS/HTML
+        </li>
+        <li data-idx="4" class="list-group-item">
+          <i class="fa-brands fa-js me-2" style="color:#ffdf00;"></i>JS
+        </li>
+        <li data-idx="5" class="list-group-item">
+          <i class="fa-brands fa-git me-2" style="color:#f34f29;"></i>Git
+        </li>
+      </ul>
+    </aside>  
+    <article id="article-tech" class="col-12 col-md-9">
+      <p data-idx="0" name="python" class="article-item">
+        Python тут по всюду. Это ведь всё таки курс бакэнд разработки на Python!<br>
+        Классы, наследование, массивы, кортежи и словари и любимое замыкание с декораторами - те слова, которые я смог вспомнить:)
+      </p>
+      <p data-idx="1" name="django" class="article-item">
+        То что вы сейчас видите, написано с помощью фреймворка Django.<br>
+        Навигация, статические страницы, шаблоны, формы и их валидация, авторизация и восстановление пароля,
+        модели, админка и запросы в базу данных. Всё это нетерпится применить в других проектах!
+      </p>
+      <p data-idx="2" name="bootstrap" class="article-item">
+        Красота на этом сайте сделана с помощью Bootstrap. Особенно адаптив навигации и статической страницы about.
+      </p>
+      <p data-idx="3" name="css" class="article-item">
+        Решил не пропускать задание и сверстать странички "about" и "технологии". А это требовало понимания html и немного css. 
+      </p>
+      <p data-idx="4" name="js" class="article-item">
+        Захотелось интерактива на странице "технологии" и сделать интерактивное переключение между топиками. А для этого пришлось заюзать JS.
+        Было интересно!
+      </p>
+      <p data-idx="5" name="git" class="article-item">
+        Без Git ни шагу. С ним можно безопасно экспериментировать и не бояться накосячить!
+      </p>
+    </article>
+  </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>
+    {% block title %}
+        Избранные авторы
+    {% endblock %}
+  </h1>
+  {% include 'posts/includes/switcher.html' %}
+  {% if page_obj %}
+    {% for post in page_obj %}
+        {% include 'posts/includes/article.html' %}
+        {% if post.group %}
+        Группа: <a href="{% url 'posts:group_list' post.group.slug %}">{{ post.group }}</a>
+        {% endif %} 
+        {% if not forloop.last %}<hr>{% endif %}
+    {% endfor %}
+  {% else %}
+    Вы не подписанны ни на одного автора или у них ещё нет постов 
+  {% endif %}
+  {% include 'posts/includes/paginator.html' %}
+{% endblock %}
