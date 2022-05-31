@@ -432,6 +432,18 @@ class FollowViewTest(TestCase):
         first_post = response.context['page_obj'].object_list[0]
         self.assertEqual(first_post, self.author_post)
 
+    def test_user_cant_follow_themselves(self):
+        self.authorized_user.get(
+            reverse(
+                'posts:profile_follow',
+                kwargs={'username': self.user.username},
+            )
+        )
+
+        response = self.authorized_user.get(reverse('posts:follow_index'))
+        following_posts_count = len(response.context['page_obj'].object_list)
+        self.assertEqual(following_posts_count, 0)
+
     def test_user_can_unfollow_author(self):
         Follow.objects.create(user=self.user, author=self.author)
         self.authorized_user.get(
