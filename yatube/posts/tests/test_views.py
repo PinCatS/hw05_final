@@ -371,7 +371,8 @@ class CachingViewTest(TestCase):
 
     def test_posts_cached_on_index_page(self):
         # cache index
-        self.authorized_client.get(reverse('posts:index'))
+        response = self.authorized_client.get(reverse('posts:index'))
+        expected_cached_content = response.content
 
         # check that there is no any records anymore in db
         Post.objects.all().delete()
@@ -379,14 +380,14 @@ class CachingViewTest(TestCase):
 
         # check that response.content still has records
         response = self.authorized_client.get(reverse('posts:index'))
-        self.assertIn(self.post.text, response.content.decode())
-        self.assertIn(self.post.author.username, response.content.decode())
+        self.assertEqual(response.content, expected_cached_content)
 
         cache.clear()
 
         # check that no we don't have any records in response too
         response = self.authorized_client.get(reverse('posts:index'))
         self.assertNotIn(self.post, response.context['page_obj'])
+        self.assertNotEqual(response.content, expected_cached_content)
 
 
 class FollowViewTest(TestCase):
